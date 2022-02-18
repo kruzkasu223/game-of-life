@@ -4,16 +4,11 @@ import './styles/App.scss'
 
 const numRows = 50
 const numCols = 50
-const vHeight = (90 - 5) / numCols
+const vHeight = (85 - 5) / numCols
 const operations = [
-  [0, 1],
-  [0, -1],
-  [1, -1],
-  [-1, 1],
-  [1, 1],
-  [-1, -1],
-  [1, 0],
-  [-1, 0],
+  [0, 1], [0, -1],
+  [1, 1], [1, -1], [1, 0],
+  [-1, 1], [-1, -1], [-1, 0],
 ]
 const initGrid = () => {
   const rows = []
@@ -25,6 +20,11 @@ const initGrid = () => {
 
 const App: React.FC = () => {
   const [grid, setGrid] = useState(initGrid())
+
+  const [lifeTime, setLifeTime] = useState(500)
+  const lifeTimeRef = useRef(lifeTime)
+  lifeTimeRef.current = lifeTime
+
   const [running, setRunning] = useState(false)
   const runningRef = useRef(running)
   runningRef.current = running
@@ -56,7 +56,7 @@ const App: React.FC = () => {
       })
     })
 
-    setTimeout(runSimulation, 1000)
+    setTimeout(runSimulation, lifeTimeRef.current)
   }, [])
 
   const generateRandomGrid = () => {
@@ -70,26 +70,51 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Conway's Game of Life</p>
-        <div>
+        <p className="App-title">Conway's Game of Life</p>
 
-          <button
-            onClick={() => {
-              setRunning(!running)
-              if (!running) {
-                runningRef.current = true
-                runSimulation()
-              }
-            }}
-          >
-            {running ? "stop" : "start"}
-          </button>
-          <button onClick={generateRandomGrid}>
-            Random
-          </button>
-          <button onClick={() => setGrid(initGrid())}>
-            Clear
-          </button>
+        <div className="actions">
+
+          <div className="actions-btn-div">
+            <button
+              onClick={() => {
+                setRunning(!running)
+                if (!running) {
+                  runningRef.current = true
+                  runSimulation()
+                }
+              }}
+            >
+              {running ? "Stop" : "Start"}
+            </button>
+
+            <button onClick={generateRandomGrid}>
+              Random
+            </button>
+
+            <button onClick={() => setGrid(initGrid())}>
+              Clear
+            </button>
+          </div>
+
+          <div className="actions-range-div">
+            <span className='lifetime-value'>Lifetime: {lifeTime / 1000}s</span>
+
+            <div className="actions-input-div">
+              <span className='lifetime-span'>0.025s</span>
+              <input
+                className="action-input-range"
+                type="range"
+                min={25}
+                value={lifeTime}
+                max={1000}
+                onChange={(e) => {
+                  setLifeTime(Number(e?.target?.value))
+                }}
+              />
+              <span className='lifetime-span'>1s</span>
+            </div>
+          </div>
+
         </div>
       </header>
 
@@ -111,8 +136,10 @@ const App: React.FC = () => {
                 style={{
                   width: `${vHeight}vh`,
                   height: `${vHeight}vh`,
-                  backgroundColor: grid[i][k] ? "pink" : undefined,
-                  border: "solid 1px black"
+                  backgroundColor: grid[i][k] ? "#c4d1ee" : undefined,
+                  boxShadow: grid[i][k] ? `inset 2px 2px 2px rgba(0, 0, 0, 0.5),
+                  inset -2px -2px 2px rgba(255, 255, 255, 0.5)` : undefined,
+                  border: "solid 1px #404653"
                 }}
               ></div>
             ))

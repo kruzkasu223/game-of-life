@@ -1,20 +1,72 @@
 .App {
-  // background-color: #282c34;
-  // color: hsl(221, 55%, 85%);
+  background-color: #282c34;
+  color: #c4d1ee;
   text-align: center;
   height: 100vh;
+
+  .App-header {
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .App-title {
+      width: 100%;
+      font-size: 1.25rem;
+      text-decoration: underline;
+    }
+
+    .actions {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .actions-range-div {
+        margin: 0 1rem;
+
+        .actions-input-div {
+          display: flex;
+          align-content: center;
+          justify-content: center;
+
+          .lifetime-span {
+            font-size: 0.75rem;
+            align-self: center;
+          }
+          .action-input-range {
+            margin: 0 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .App-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+  }
 }
 
-.App-header {
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+button {
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #c4d1ee;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.25rem 0.75rem;
+  margin: 0 0.5rem;
+  transition: 0.3s;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 3px 3px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -3px 2px rgba(255, 255, 255, 0.5);
 }
 
-.App-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 90vh;
+button:hover {
+  box-shadow: inset 3px 3px 2px rgba(255, 255, 255, 0.5),
+    inset -3px -3px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
 }
