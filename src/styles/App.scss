@@ -1,18 +1,18 @@
 .App {
   background-color: #282c34;
   color: #c4d1ee;
-  text-align: center;
   height: 100vh;
 
   .App-header {
     height: 15vh;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 
     .App-title {
       width: 100%;
-      font-size: 1.25rem;
+      margin: 0 2rem;
+      font-size: 1.5rem;
       text-decoration: underline;
     }
 
@@ -24,7 +24,7 @@
       justify-content: flex-end;
 
       .actions-range-div {
-        margin: 0 1rem;
+        margin: 0 2rem 0 1rem;
 
         .actions-input-div {
           display: flex;
