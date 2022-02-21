@@ -4,7 +4,7 @@ import './styles/App.scss'
 
 const numRows = 50
 const numCols = 50
-const vHeight = (85 - 5) / numCols
+const vHeight = 80 / numCols
 const operations = [
   [0, 1], [0, -1],
   [1, 1], [1, -1], [1, 0],
